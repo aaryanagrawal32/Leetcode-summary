@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-brand-50: #faf5ff;
+  --color-brand-100: #f3e8ff;
+  --color-brand-200: #e9d5ff;
+  --color-brand-300: #d8b4fe;
+  --color-brand-400: #c084fc;
+  --color-brand-500: #a855f7;
+  --color-brand-600: #9333ea;
+  --color-brand-700: #7e22ce;
+  --color-brand-800: #6b21a8;
+  --color-brand-900: #581c87;
+  --color-brand-950: #0f071b;
+
+  --color-dark-bg: #0b0713;
+  --color-dark-card: rgba(22, 17, 34, 0.7);
+  --color-dark-border: rgba(168, 85, 247, 0.15);
+  --color-dark-border-hover: rgba(168, 85, 247, 0.35);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(11, 7, 19, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.6);
+}
+
+/* Sidebar Custom Scrollbar */
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: rgba(8, 5, 14, 0.3);
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.25);
+  border-radius: 2px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.6);
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(147, 51, 234, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(168, 85, 247, 0.05) 0px, transparent 70%);
+  background-attachment: fixed;
+}
+
+/* Premium Animations */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+.glass-card {
+  background: var(--color-dark-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-dark-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: var(--color-dark-border-hover);
+  box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.15);
+  transform: translateY(-2px);
+}
+
+/* LeetCode Description HTML Formatting Override */
+.leetcode-description-html {
+  font-family: var(--font-sans);
+}
+
+.leetcode-description-html p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.leetcode-description-html p:last-child {
+  margin-bottom: 0;
+}
+
+.leetcode-description-html code {
+  font-family: var(--font-mono);
+  background-color: rgba(26, 15, 46, 0.65);
+  color: #c084fc;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  font-size: 0.8em;
+}
+
+.leetcode-description-html pre {
+  font-family: var(--font-mono);
+  background-color: rgba(15, 10, 27, 0.45);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85em;
+  margin: 0.75rem 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  color: #e2e8f0;
+}
+
+.leetcode-description-html pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-size: 1em !important;
+}
+
+.leetcode-description-html ul {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.leetcode-description-html ol {
+  list-style-type: decimal;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.leetcode-description-html li {
+  margin: 0.25rem 0;
+}
+
+.leetcode-description-html strong {
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.leetcode-description-html em {
+  font-style: italic;
+}
+
+/* IDE Sub-Tab animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+
+  to {
+    opacity: 1;
+    max-height: 600px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-scale {
+  animation: scaleIn 0.2s ease-out forwards;
+}
+
+/* Complexity Gauge glow */
+.gauge-glow {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+/* Select dropdown dark theme override */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 28px;
+}
+
+select option {
+  background-color: #0f0a1d;
+  color: #e2e8f0;
+}
+
+/* Keyword pill hover glow */
+.keyword-pill:hover {
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.25);
+}
