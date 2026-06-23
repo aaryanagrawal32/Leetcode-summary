@@ -1134,14 +1134,14 @@ export default function App() {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-2 w-full md:w-auto">
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full md:w-auto">
                 <input
                   type="text"
                   placeholder="Rival LeetCode Username..."
                   value={rivalInputName}
                   onChange={(e) => setRivalInputName(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSyncRival(rivalInputName)}
-                  className="px-3 py-1.5 text-xs font-mono rounded-xl bg-purple-950/20 border border-purple-900/30 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/40 w-full sm:w-56"
+                  className="px-3 py-1.5 text-xs font-mono rounded-xl bg-purple-950/20 border border-purple-900/30 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/40 flex-1 min-w-[150px] sm:w-56"
                 />
                 <button
                   onClick={() => handleSyncRival(rivalInputName)}
@@ -1180,8 +1180,8 @@ export default function App() {
         {/* Header VS Card */}
         <div className="glass-card rounded-2xl p-6 border border-purple-950/30 relative flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
           {/* User profile side */}
-          <div className="flex items-center gap-4 text-left w-full md:w-2/5 justify-end">
-            <div className="text-right">
+          <div className="flex items-center gap-4 w-full md:w-2/5 justify-center md:justify-end">
+            <div className="text-center md:text-right">
               <span className="text-[10px] text-purple-400 font-mono uppercase tracking-wider block">Primary User</span>
               <span className="text-lg font-bold text-slate-100 block">{profileData ? profileData.name : 'Aaryan'}</span>
               <span className="text-xs text-slate-400 font-mono">@{profileData?.username || '68yxxnyWG8'}</span>
@@ -1201,13 +1201,13 @@ export default function App() {
           </div>
 
           {/* Rival profile side */}
-          <div className="flex items-center gap-4 text-left w-full md:w-2/5 justify-start">
+          <div className="flex items-center gap-4 w-full md:w-2/5 justify-center md:justify-start">
             <img 
               src={rivalProfileData.avatar} 
               alt="Rival Avatar" 
               className="w-14 h-14 rounded-xl border border-cyan-500/30 object-cover" 
             />
-            <div>
+            <div className="text-center md:text-left">
               <span className="text-[10px] text-cyan-400 font-mono uppercase tracking-wider block">Rival Challenger</span>
               <span className="text-lg font-bold text-slate-100 block">{rivalProfileData.name}</span>
               <span className="text-xs text-slate-400 font-mono">@{rivalProfileData.username}</span>
@@ -1512,7 +1512,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-[#0b0713] text-slate-100 selection:bg-purple-500/30 selection:text-purple-200">
       
       {/* 1. Header Navigation Bar */}
-      <header className="sticky top-0 z-40 border-b border-purple-950/40 bg-[#0e0a1b]/80 backdrop-blur-md px-6 py-4 flex items-center justify-between">
+      <header className="sticky top-0 z-30 border-b border-purple-950/40 bg-[#0e0a1b]/80 backdrop-blur-md px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* Sidebar collapse button for desktop */}
           <button 
@@ -1529,10 +1529,13 @@ export default function App() {
             <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 blur-sm opacity-50 -z-10 animate-pulse-glow"></div>
           </div>
           <div>
-            <h1 className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-purple-400 bg-clip-text text-transparent m-0 p-0 font-sans">
-              LeetCode <span className="text-purple-400">Portfolio Hub</span>
+            <h1 className="text-lg sm:text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-purple-400 bg-clip-text text-transparent m-0 p-0 font-sans">
+              LeetCode <span className="text-purple-400 hidden sm:inline">Portfolio Hub</span><span className="text-purple-400 inline sm:hidden"> Hub</span>
             </h1>
-            <p className="text-[10px] text-slate-400 uppercase tracking-widest font-mono">Developer Dashboard</p>
+            <p className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-mono">
+              <span className="hidden sm:inline">Developer Dashboard</span>
+              <span className="inline sm:hidden">Dev Dashboard</span>
+            </p>
           </div>
         </div>
 
@@ -1583,7 +1586,7 @@ export default function App() {
                 value={inputUsername}
                 onChange={(e) => setInputUsername(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSyncProfile(inputUsername)}
-                className="bg-purple-950/30 border border-purple-900/50 rounded-xl px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/25 transition-all w-28 sm:w-36 md:w-44 font-sans"
+                className="bg-purple-950/30 border border-purple-900/50 rounded-xl px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/25 transition-all w-24 sm:w-36 md:w-44 font-sans"
               />
               <button
                 onClick={() => handleSyncProfile(inputUsername)}
@@ -1643,19 +1646,36 @@ export default function App() {
         {mobileSidebarOpen && (
           <div 
             onClick={() => setMobileSidebarOpen(false)}
-            className="fixed inset-0 z-20 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity duration-300"
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity duration-300"
           />
         )}
 
         {/* Left Sidebar Pane */}
         <aside className={`
-          fixed inset-y-0 left-0 z-30 w-72 lg:w-80 border-r border-purple-950/30 bg-[#0c0818]/95 lg:bg-[#0c0818]/65
-          flex flex-col transform transition-all duration-300 ease-in-out lg:relative lg:transform-none lg:z-auto
-          ${mobileSidebarOpen ? 'translate-x-0 top-[73px]' : '-translate-x-full lg:translate-x-0'}
-          ${sidebarCollapsed ? 'lg:hidden lg:w-0 lg:border-r-0' : 'lg:flex lg:w-80'}
+          inset-y-0 left-0 border-r border-purple-950/30 bg-[#0c0818]/95 lg:bg-[#0c0818]/65
+          flex-col transform transition-all duration-300 ease-in-out lg:relative lg:transform-none lg:z-auto
+          ${mobileSidebarOpen 
+            ? 'flex fixed top-0 bottom-0 z-50 w-72 translate-x-0' 
+            : 'hidden lg:flex -translate-x-full lg:translate-x-0 lg:z-auto'
+          }
+          ${sidebarCollapsed ? 'lg:hidden lg:w-0 lg:border-r-0' : 'lg:w-80'}
         `}>
+          {/* Mobile Sidebar Header */}
+          <div className="flex lg:hidden items-center justify-between px-4 py-3.5 border-b border-purple-950/30 bg-[#0e0a1b]">
+            <div className="flex items-center gap-2">
+              <Layers className="w-5 h-5 text-purple-400" />
+              <span className="font-bold text-sm text-white font-sans">Menu</span>
+            </div>
+            <button 
+              onClick={() => setMobileSidebarOpen(false)}
+              className="p-1.5 rounded-lg bg-purple-950/40 border border-purple-900/30 text-slate-400 hover:text-white cursor-pointer"
+            >
+              <X size={16} />
+            </button>
+          </div>
+
           {/* Sticky wrapper inside sidebar to support independent scrollbar while page scrolls */}
-          <div className="flex flex-col w-full h-full lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] overflow-hidden">
+          <div className="flex flex-col w-full flex-1 lg:sticky lg:top-[73px] lg:h-[calc(100vh-73px)] overflow-hidden">
             
             {/* Profile Dashboard Sidebar Button (Fixed at the top) */}
             <div className="p-4 pb-2 border-b border-purple-950/30 bg-purple-950/5">
@@ -1807,7 +1827,7 @@ export default function App() {
         </aside>
 
         {/* Main Content Workspace Panel */}
-        <main className="flex-1 p-6 lg:p-8 flex flex-col gap-6">
+        <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 flex flex-col gap-6">
           
           {/* Topic Tag Banner Panel */}
           {activeTab !== 'profile' && activeTag && (
@@ -2434,7 +2454,7 @@ export default function App() {
                       </div>
 
                       {/* Dropdown Container Selector + Search Input Row */}
-                      <div className="grid grid-cols-2 gap-3 mt-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                         <div className="flex flex-col gap-1">
                           <label className="text-[9px] text-slate-500 font-mono uppercase tracking-wider">Select Container</label>
                           <select
@@ -2805,7 +2825,7 @@ export default function App() {
                               <div className="border-t border-purple-950/30 bg-[#0d0918]/60 animate-slide-down">
                                 
                                 {/* IDE Sub-Tab Bar */}
-                                <div className="flex border-b border-purple-950/30 px-3 bg-[#0c0818]/80">
+                                <div className="flex border-b border-purple-950/30 px-3 bg-[#0c0818]/80 overflow-x-auto sidebar-scrollbar">
                                   {[
                                     { key: 'description', icon: <BookOpen size={12} />, label: 'Problem Description' },
                                     { key: 'walkthrough', icon: <Sparkles size={12} />, label: 'Walkthrough & Complexity' },
